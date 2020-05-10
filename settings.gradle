@@ -1,0 +1,2 @@
+rootProject.name='ConnectifyMe'
+include ':app'

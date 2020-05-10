@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "904192332247",
+    "firebase_url": "https://connectifyme-6300c.firebaseio.com",
+    "project_id": "connectifyme-6300c",
+    "storage_bucket": "connectifyme-6300c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904192332247:android:6e1a4645e444c6c93c7b92",
+        "android_client_info": {
+          "package_name": "application.rahul.connectifyme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904192332247-51vtsbflc20nuka1srnhltrkbg226vv5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "application.rahul.connectifyme",
+            "certificate_hash": "65cf9096f74b7e6ca0e482e138ac1a0aeebcb67a"
+          }
+        },
+        {
+          "client_id": "904192332247-8ofor8s0j46ofk8cuqbbqhrn0jg19qam.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSQzY23VtZrlt5SOW4V5-6Mr4tOZhPjDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904192332247-8ofor8s0j46ofk8cuqbbqhrn0jg19qam.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
