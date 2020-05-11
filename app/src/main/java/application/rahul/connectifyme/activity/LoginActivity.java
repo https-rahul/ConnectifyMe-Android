@@ -4,6 +4,11 @@ package application.rahul.connectifyme.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import application.rahul.connectifyme.R;
+import rest.ApiClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import services.UserInterface;
 
 //import android.app.ProgressDialog;
 //import android.content.Intent;
@@ -12,6 +17,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -20,12 +26,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 //import android.util.Log;
 //import android.view.View;
 //
@@ -72,6 +81,10 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
         mFirebaseAuth = FirebaseAuth.getInstance();
 
+        progressDialog = new ProgressDialog(LoginActivity.this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Signing you in...please wait!");
+
         signInButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
@@ -102,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
+            progressDialog.show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 // Google Sign In was successful, authenticate with Firebase
@@ -125,8 +139,36 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                            final FirebaseUser user = mFirebaseAuth.getCurrentUser();
 
+
+                            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(LoginActivity.this, new OnSuccessListener<InstanceIdResult>() {
+                                @Override
+                                public void onSuccess(InstanceIdResult instanceIdResult) {
+                                    String userToken = instanceIdResult.getToken();
+                                    String uid = user.getUid();
+                                    String name = user.getDisplayName();
+                                    String email = user.getEmail();
+                                    String profileUrl = user.getPhotoUrl().toString();
+                                    String coverUrl = "";
+                                    UserInterface userInterface = ApiClient.getApiClient().create(UserInterface.class);
+                                    Call<Integer> call = userInterface.signin(new LoginActivity.UserInfo(uid,name,email,profileUrl,coverUrl,userToken));
+                                    call.enqueue(new Callback<Integer>() {
+                                        @Override
+                                        public void onResponse(Call<Integer> call, Response<Integer> response) {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                                            finish();
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Integer> call, Throwable t) {
+
+                                        }
+                                    });
+                                }
+                            });
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -137,5 +179,19 @@ public class LoginActivity extends AppCompatActivity {
                         // ...
                     }
                 });
+    }
+
+    public class UserInfo{
+
+        String uid, name, email, profileUrl, coverUrl, userToken;
+
+        public UserInfo(String uid, String name, String email, String profileUrl, String coverUrl, String userToken) {
+            this.uid = uid;
+            this.name = name;
+            this.email = email;
+            this.profileUrl = profileUrl;
+            this.coverUrl = coverUrl;
+            this.userToken = userToken;
+        }
     }
 }

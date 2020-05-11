@@ -27,6 +27,7 @@
                     android:textColor="#000"
                     android:text="Beta v1.0.0"
                     android:textSize="26sp"/>
+
             </RelativeLayout>
 
         <com.google.android.gms.common.SignInButton
@@ -38,6 +39,8 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginBottom="10dp"/>
+
+
 
     </FrameLayout>
 
