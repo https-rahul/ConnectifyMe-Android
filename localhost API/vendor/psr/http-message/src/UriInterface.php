@@ -156,11 +156,11 @@ interface UriInterface
     public function getQuery();
 
     /**
-     * Retrieve the fragment component of the URI.
+     * Retrieve the application.rahul.connectifyme.activity.fragment component of the URI.
      *
-     * If no fragment is present, this method MUST return an empty string.
+     * If no application.rahul.connectifyme.activity.fragment is present, this method MUST return an empty string.
      *
-     * The leading "#" character is not part of the fragment and MUST NOT be
+     * The leading "#" character is not part of the application.rahul.connectifyme.activity.fragment and MUST NOT be
      * added.
      *
      * The value returned MUST be percent-encoded, but MUST NOT double-encode
@@ -169,7 +169,7 @@ interface UriInterface
      *
      * @see https://tools.ietf.org/html/rfc3986#section-2
      * @see https://tools.ietf.org/html/rfc3986#section-3.5
-     * @return string The URI fragment.
+     * @return string The URI application.rahul.connectifyme.activity.fragment.
      */
     public function getFragment();
 
@@ -281,20 +281,20 @@ interface UriInterface
     public function withQuery($query);
 
     /**
-     * Return an instance with the specified URI fragment.
+     * Return an instance with the specified URI application.rahul.connectifyme.activity.fragment.
      *
      * This method MUST retain the state of the current instance, and return
-     * an instance that contains the specified URI fragment.
+     * an instance that contains the specified URI application.rahul.connectifyme.activity.fragment.
      *
-     * Users can provide both encoded and decoded fragment characters.
+     * Users can provide both encoded and decoded application.rahul.connectifyme.activity.fragment characters.
      * Implementations ensure the correct encoding as outlined in getFragment().
      *
-     * An empty fragment value is equivalent to removing the fragment.
+     * An empty application.rahul.connectifyme.activity.fragment value is equivalent to removing the application.rahul.connectifyme.activity.fragment.
      *
-     * @param string $fragment The fragment to use with the new instance.
-     * @return static A new instance with the specified fragment.
+     * @param string $application.rahul.connectifyme.activity.fragment The application.rahul.connectifyme.activity.fragment to use with the new instance.
+     * @return static A new instance with the specified application.rahul.connectifyme.activity.fragment.
      */
-    public function withFragment($fragment);
+    public function withFragment($application.rahul.connectifyme.activity.fragment);
 
     /**
      * Return the string representation as a URI reference.
@@ -314,7 +314,7 @@ interface UriInterface
      *     - If the path is starting with more than one "/" and no authority is
      *       present, the starting slashes MUST be reduced to one.
      * - If a query is present, it MUST be prefixed by "?".
-     * - If a fragment is present, it MUST be prefixed by "#".
+     * - If a application.rahul.connectifyme.activity.fragment is present, it MUST be prefixed by "#".
      *
      * @see http://tools.ietf.org/html/rfc3986#section-4.1
      * @return string

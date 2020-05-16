@@ -91,11 +91,11 @@ class Uri implements UriInterface
     protected $query = '';
 
     /**
-     * Uri fragment string (without "#" prefix)
+     * Uri application.rahul.connectifyme.activity.fragment string (without "#" prefix)
      *
      * @var string
      */
-    protected $fragment = '';
+    protected $application.rahul.connectifyme.activity.fragment = '';
 
     /**
      * Create new Uri.
@@ -105,7 +105,7 @@ class Uri implements UriInterface
      * @param int    $port     Uri port number.
      * @param string $path     Uri path.
      * @param string $query    Uri query string.
-     * @param string $fragment Uri fragment.
+     * @param string $application.rahul.connectifyme.activity.fragment Uri application.rahul.connectifyme.activity.fragment.
      * @param string $user     Uri user.
      * @param string $password Uri password.
      */
@@ -115,7 +115,7 @@ class Uri implements UriInterface
         $port = null,
         $path = '/',
         $query = '',
-        $fragment = '',
+        $application.rahul.connectifyme.activity.fragment = '',
         $user = '',
         $password = ''
     ) {
@@ -124,7 +124,7 @@ class Uri implements UriInterface
         $this->port = $this->filterPort($port);
         $this->path = empty($path) ? '/' : $this->filterPath($path);
         $this->query = $this->filterQuery($query);
-        $this->fragment = $this->filterQuery($fragment);
+        $this->application.rahul.connectifyme.activity.fragment = $this->filterQuery($application.rahul.connectifyme.activity.fragment);
         $this->user = $user;
         $this->password = $password;
     }
@@ -151,9 +151,9 @@ class Uri implements UriInterface
         $port = isset($parts['port']) ? $parts['port'] : null;
         $path = isset($parts['path']) ? $parts['path'] : '';
         $query = isset($parts['query']) ? $parts['query'] : '';
-        $fragment = isset($parts['fragment']) ? $parts['fragment'] : '';
+        $application.rahul.connectifyme.activity.fragment = isset($parts['application.rahul.connectifyme.activity.fragment']) ? $parts['application.rahul.connectifyme.activity.fragment'] : '';
 
-        return new static($scheme, $host, $port, $path, $query, $fragment, $user, $pass);
+        return new static($scheme, $host, $port, $path, $query, $application.rahul.connectifyme.activity.fragment, $user, $pass);
     }
 
     /**
@@ -225,10 +225,10 @@ class Uri implements UriInterface
         }
 
         // Fragment
-        $fragment = '';
+        $application.rahul.connectifyme.activity.fragment = '';
 
         // Build Uri
-        $uri = new static($scheme, $host, $port, $virtualPath, $queryString, $fragment, $username, $password);
+        $uri = new static($scheme, $host, $port, $virtualPath, $queryString, $application.rahul.connectifyme.activity.fragment, $username, $password);
         if ($basePath) {
             $uri = $uri->withBasePath($basePath);
         }
@@ -709,7 +709,7 @@ class Uri implements UriInterface
     }
 
     /**
-     * Filters the query string or fragment of a URI.
+     * Filters the query string or application.rahul.connectifyme.activity.fragment of a URI.
      *
      * @param string $query The raw uri query string.
      * @return string The percent-encoded query string.
@@ -730,11 +730,11 @@ class Uri implements UriInterface
      *******************************************************************************/
 
     /**
-     * Retrieve the fragment component of the URI.
+     * Retrieve the application.rahul.connectifyme.activity.fragment component of the URI.
      *
-     * If no fragment is present, this method MUST return an empty string.
+     * If no application.rahul.connectifyme.activity.fragment is present, this method MUST return an empty string.
      *
-     * The leading "#" character is not part of the fragment and MUST NOT be
+     * The leading "#" character is not part of the application.rahul.connectifyme.activity.fragment and MUST NOT be
      * added.
      *
      * The value returned MUST be percent-encoded, but MUST NOT double-encode
@@ -743,35 +743,35 @@ class Uri implements UriInterface
      *
      * @see https://tools.ietf.org/html/rfc3986#section-2
      * @see https://tools.ietf.org/html/rfc3986#section-3.5
-     * @return string The URI fragment.
+     * @return string The URI application.rahul.connectifyme.activity.fragment.
      */
     public function getFragment()
     {
-        return $this->fragment;
+        return $this->application.rahul.connectifyme.activity.fragment;
     }
 
     /**
-     * Return an instance with the specified URI fragment.
+     * Return an instance with the specified URI application.rahul.connectifyme.activity.fragment.
      *
      * This method MUST retain the state of the current instance, and return
-     * an instance that contains the specified URI fragment.
+     * an instance that contains the specified URI application.rahul.connectifyme.activity.fragment.
      *
-     * Users can provide both encoded and decoded fragment characters.
+     * Users can provide both encoded and decoded application.rahul.connectifyme.activity.fragment characters.
      * Implementations ensure the correct encoding as outlined in getFragment().
      *
-     * An empty fragment value is equivalent to removing the fragment.
+     * An empty application.rahul.connectifyme.activity.fragment value is equivalent to removing the application.rahul.connectifyme.activity.fragment.
      *
-     * @param string $fragment The fragment to use with the new instance.
-     * @return self A new instance with the specified fragment.
+     * @param string $application.rahul.connectifyme.activity.fragment The application.rahul.connectifyme.activity.fragment to use with the new instance.
+     * @return self A new instance with the specified application.rahul.connectifyme.activity.fragment.
      */
-    public function withFragment($fragment)
+    public function withFragment($application.rahul.connectifyme.activity.fragment)
     {
-        if (!is_string($fragment) && !method_exists($fragment, '__toString')) {
-            throw new InvalidArgumentException('Uri fragment must be a string');
+        if (!is_string($application.rahul.connectifyme.activity.fragment) && !method_exists($application.rahul.connectifyme.activity.fragment, '__toString')) {
+            throw new InvalidArgumentException('Uri application.rahul.connectifyme.activity.fragment must be a string');
         }
-        $fragment = ltrim((string)$fragment, '#');
+        $application.rahul.connectifyme.activity.fragment = ltrim((string)$application.rahul.connectifyme.activity.fragment, '#');
         $clone = clone $this;
-        $clone->fragment = $this->filterQuery($fragment);
+        $clone->application.rahul.connectifyme.activity.fragment = $this->filterQuery($application.rahul.connectifyme.activity.fragment);
 
         return $clone;
     }
@@ -798,7 +798,7 @@ class Uri implements UriInterface
      *     - If the path is starting with more than one "/" and no authority is
      *       present, the starting slashes MUST be reduced to one.
      * - If a query is present, it MUST be prefixed by "?".
-     * - If a fragment is present, it MUST be prefixed by "#".
+     * - If a application.rahul.connectifyme.activity.fragment is present, it MUST be prefixed by "#".
      *
      * @see http://tools.ietf.org/html/rfc3986#section-4.1
      * @return string
@@ -810,7 +810,7 @@ class Uri implements UriInterface
         $basePath = $this->getBasePath();
         $path = $this->getPath();
         $query = $this->getQuery();
-        $fragment = $this->getFragment();
+        $application.rahul.connectifyme.activity.fragment = $this->getFragment();
 
         $path = $basePath . '/' . ltrim($path, '/');
 
@@ -818,7 +818,7 @@ class Uri implements UriInterface
             . ($authority !== '' ? '//' . $authority : '')
             . $path
             . ($query !== '' ? '?' . $query : '')
-            . ($fragment !== '' ? '#' . $fragment : '');
+            . ($application.rahul.connectifyme.activity.fragment !== '' ? '#' . $application.rahul.connectifyme.activity.fragment : '');
     }
 
     /**
